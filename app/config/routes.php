@@ -18,9 +18,7 @@ use flight\net\Router;
 $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() use ($app) {
-        $produitController = new ProduitController($app);
-		$produit=$produitController->getProduits();
-		$app->render('index', [ 'produit' => $produit]);
+		$app->render('index', ["hello"]);
 	});
 
     /*$router->get('/detail/@id:[0-9]', function($id) use ($app) {
@@ -28,12 +26,6 @@ $router->group('', function(Router $router) use ($app) {
 		$produit=$produitController->getDetailProduit($id);
 		$app->render('index', [ 'produit' => $produit]);
 	});*/
-
-	$router->get('/detail/@id:[0-9]', function($id) use ($app) {
-        $DetailController = new DetailProduit($app);
-		$produit=$DetailController->getDetailProduit($id);
-		$app->render('detail', [ 'detail' => $produit]);
-	});
 
 	$router->get('/route-iray', function() use ($app) {
 		echo '<h1>route iray ve!</h1>';

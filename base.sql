@@ -62,3 +62,81 @@ CREATE TABLE kptv_voyage (
     FOREIGN KEY (idChauffeur) REFERENCES kptv_chauffeurs(id),
     FOREIGN KEY (idVehicule) REFERENCES kptv_vehicules(id)
 );
+
+CREATE OR REPLACE VIEW v_kptv_trajets_complets AS
+SELECT 
+    t.id AS trajet_id,
+    t.date_debut,
+    t.date_fin,
+    t.type_voyage,
+    t.recette,
+    t.carburant,
+    (t.recette - t.carburant) AS benefice,
+    
+    p.id AS parcours_id,
+    p.lieu_depart,
+    p.lieu_arrivee,
+    p.distance,
+    
+    vo.id AS voyage_id,
+    
+    ve.id AS vehicule_id,
+    ve.modele,
+    ve.immatriculation,
+    ve.capacite,
+    ve.min_versement,
+    
+    c.id AS chauffeur_id,
+    c.nom AS chauffeur_nom,
+    c.contact AS chauffeur_contact
+    
+FROM kptv_trajets t
+JOIN kptv_parcours p ON t.idParcours = p.id
+JOIN kptv_voyage vo ON vo.idTrajet = t.id
+JOIN kptv_vehicules ve ON vo.idVehicule = ve.id
+JOIN kptv_chauffeurs c ON vo.idChauffeur = c.id;
+
+
+CREATE OR REPLACE VIEW v_kptv_vehicules_par_jour AS
+SELECT 
+    DATE(date_debut) AS jour,
+    vehicule_id,
+    immatriculation,
+    modele,
+    chauffeur_id,
+    chauffeur_nom,
+    SUM(distance) AS km_effectues,
+    SUM(recette) AS montant_recette,
+    SUM(carburant) AS montant_carburant,
+    SUM(benefice) AS benefice,
+    COUNT(trajet_id) AS nombre_trajets
+FROM v_kptv_trajets_complets
+GROUP BY DATE(date_debut), vehicule_id, chauffeur_id;
+
+
+CREATE OR REPLACE VIEW v_kptv_benefice_par_vehicule AS
+SELECT 
+    vehicule_id,
+    immatriculation,
+    modele,
+    SUM(benefice) AS benefice_total,
+    SUM(recette) AS recette_totale,
+    SUM(carburant) AS carburant_total,
+    SUM(distance) AS km_totaux,
+    COUNT(trajet_id) AS nombre_trajets
+FROM v_kptv_trajets_complets
+GROUP BY vehicule_id;
+
+
+CREATE OR REPLACE VIEW v_kptv_benefice_par_jour AS
+SELECT 
+    DATE(date_debut) AS jour,
+    SUM(benefice) AS benefice_total,
+    SUM(recette) AS recette_totale,
+    SUM(carburant) AS carburant_total,
+    SUM(distance) AS km_totaux,
+    COUNT(trajet_id) AS nombre_trajets,
+    COUNT(DISTINCT vehicule_id) AS nombre_vehicules,
+    COUNT(DISTINCT chauffeur_id) AS nombre_chauffeurs
+FROM v_kptv_trajets_complets
+GROUP BY DATE(date_debut);

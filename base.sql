@@ -34,7 +34,7 @@ CREATE TABLE kptv_trajets (
     date_fin DATETIME,
     recette DECIMAL(10,2) NOT NULL,
     carburant DECIMAL(10,2) NOT NULL,
-    type_voyage ENUM('ALLER','RETOUR') NOT NULL,
+    type_voyage CHAR(1) NOT NULL,
     FOREIGN KEY (idParcours) REFERENCES kptv_parcours(id),
     CONSTRAINT chk_dates CHECK (date_fin > date_debut)   
 );

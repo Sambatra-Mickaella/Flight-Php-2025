@@ -12,7 +12,7 @@
     <header>
         <div class="container">
             <nav>
-                <a href="index.html" class="logo">E-Varotra</a>
+                <a href="index.html" class="logo">Cooperative</a>
                 <ul class="menu">
                     <li><a href="index.html">Accueil</a></li>
                 </ul>
@@ -35,7 +35,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 E-Varotra</p>
+        <p>&copy; 2025 Cooperative</p>
     </footer>
 </body>
 </html>

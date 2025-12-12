@@ -1,11 +1,11 @@
-CREATE TABLE parcours (
+CREATE TABLE kptv_parcours (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lieu_depart VARCHAR(255) NOT NULL,
     lieu_arrivee VARCHAR(255) NOT NULL,
     distance DECIMAL(10,2) NOT NULL
 );
 
-INSERT INTO parcours (lieu_depart, lieu_arrivee, distance) VALUES
+INSERT INTO kptv_parcours (lieu_depart, lieu_arrivee, distance) VALUES
 ('67 Ha', 'Anosibe', 12.50),
 ('Analakely', 'Ambohimanarina', 8.30),
 ('Ampasampito', 'Ambatobe', 6.20),
@@ -26,3 +26,39 @@ INSERT INTO parcours (lieu_depart, lieu_arrivee, distance) VALUES
 ('Tsaralalana', 'Andraisoro', 5.90),
 ('Ambohijatovo', 'Faravohitra', 2.80),
 ('Isotry', 'Antohomadinika', 4.60);
+
+CREATE TABLE kptv_trajets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idParcours INT NOT NULL,
+    date_debut DATETIME NOT NULL,
+    date_fin DATETIME,
+    recette DECIMAL(10,2) NOT NULL,
+    carburant DECIMAL(10,2) NOT NULL,
+    type_voyage ENUM('ALLER','RETOUR') NOT NULL,
+    FOREIGN KEY (idParcours) REFERENCES kptv_parcours(id),
+    CONSTRAINT chk_dates CHECK (date_fin > date_debut)   
+);
+
+CREATE TABLE kptv_chauffeurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    contact VARCHAR(100)
+);
+
+CREATE TABLE kptv_vehicules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    modele VARCHAR(100),
+    immatriculation VARCHAR(100) NOT NULL,
+    capacite INT NOT NULL,
+    min_versement DECIMAL(10,2) 
+);
+
+CREATE TABLE kptv_voyage (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idTrajet INT NOT NULL,
+    idChauffeur INT NOT NULL,
+    idVehicule INT NOT NULL
+    FOREIGN KEY (idTrajet) REFERENCES kptv_trajets(id),
+    FOREIGN KEY (idChauffeur) REFERENCES kptv_chauffeurs(id),
+    FOREIGN KEY (idVehicule) REFERENCES kptv_vehicules(id)
+);

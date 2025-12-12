@@ -24,12 +24,10 @@
 
         <h1>Bienvenue sur notre boutique</h1>
         <section class="product-list">
-            <?php foreach ($produit as $produits){ ?>
+            <?php foreach ($parcours as $parcourss){ ?>
                  <article class="product-card">
-                <a href="produits.html">
-                    <img src="<?= $produits['image'] ?>" alt="Produit 1">
-                    <h2><?= $produits['name'] ?></h2>
-                    <a href="detail/<?= $produits['id']?>"> Voir detail</a>
+                <a href="parcourss.html">
+                    <h2><?= $parcourss['lieu_depart'] ?> - <?= $parcourss['lieu_arrivee'] ?></h2>
                 </a>
             </article>
          <?php } ?>

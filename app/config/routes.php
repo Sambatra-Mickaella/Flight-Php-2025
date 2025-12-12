@@ -1,9 +1,7 @@
 <?php
 
 use app\controllers\ApiExampleController;
-use app\controllers\ProduitController;
-use app\controllers\DetailProduit;
-
+use app\controllers\ParcoursController;
 
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
@@ -18,14 +16,15 @@ use flight\net\Router;
 $router->group('', function(Router $router) use ($app) {
 
 	$router->get('/', function() use ($app) {
-		$app->render('index', ["hello"]);
+		$parcoursController = new ParcoursController($app);
+		$parcoursController->getParcours();
 	});
 
-    /*$router->get('/detail/@id:[0-9]', function($id) use ($app) {
-        $produitController = new DetailProduit($app);
-		$produit=$produitController->getDetailProduit($id);
-		$app->render('index', [ 'produit' => $produit]);
-	});*/
+	$router->get('/detail/@id:[0-9]', function($id) use ($app) {
+		$parcoursController = new ParcoursController($app);
+		$parcoursController->getParcoursById($id);
+	});
+
 
 	$router->get('/route-iray', function() use ($app) {
 		echo '<h1>route iray ve!</h1>';

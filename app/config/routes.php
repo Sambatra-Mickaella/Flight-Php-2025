@@ -2,6 +2,7 @@
 
 use app\controllers\ApiExampleController;
 use app\controllers\ParcoursController;
+use app\controllers\TrajetController;
 
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
@@ -19,6 +20,12 @@ $router->group('', function(Router $router) use ($app) {
 		$parcoursController = new ParcoursController($app);
 		$parcoursController->getParcours();
 	});
+
+	Flight::route('/parcours/@id', function($id){
+    $controller = new TrajetController(Flight::app());
+    $controller->detail($id);
+});
+
 
 	$router->get('/detail/@id:[0-9]', function($id) use ($app) {
 		$parcoursController = new ParcoursController($app);

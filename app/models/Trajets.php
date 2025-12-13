@@ -18,7 +18,7 @@ class Trajets {
     }
 
     public function getTrajetsByParcours($id){
-        $stmt = $this->db->prepare("SELECT *FROM v_kptv_trajets_complets WHERE parcours_id = ? ORDER BY date_debut DESC");
+        $stmt = $this->db->prepare("SELECT * FROM v_kptv_trajets_complets WHERE parcours_id = ? ORDER BY date_debut DESC");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }

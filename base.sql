@@ -57,7 +57,7 @@ CREATE TABLE kptv_voyage (
     id INT AUTO_INCREMENT PRIMARY KEY,
     idTrajet INT NOT NULL,
     idChauffeur INT NOT NULL,
-    idVehicule INT NOT NULL
+    idVehicule INT NOT NULL,
     FOREIGN KEY (idTrajet) REFERENCES kptv_trajets(id),
     FOREIGN KEY (idChauffeur) REFERENCES kptv_chauffeurs(id),
     FOREIGN KEY (idVehicule) REFERENCES kptv_vehicules(id)

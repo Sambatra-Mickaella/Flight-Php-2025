@@ -12,12 +12,12 @@ class Parcours {
     }
     
     public function getParcours(){
-        $stmt = $this->db->query("SELECT * FROM parcours");
+        $stmt = $this->db->query("SELECT * FROM kptv_parcours");
         return $stmt->fetchAll();
     }
 
     public function getParcoursById($id){
-        $stmt = $this->db->prepare("SELECT * FROM parcours WHERE id = ?");
+        $stmt = $this->db->prepare("SELECT * FROM kptv_parcours WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }

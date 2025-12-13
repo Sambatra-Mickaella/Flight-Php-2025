@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,9 +10,9 @@
     <header>
         <div class="container">
             <nav>
-                <a href="index.html" class="logo">Cooperative</a>
+                <a href="/" class="logo">Cooperative</a>
                 <ul class="menu">
-                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="/">Accueil</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,18 +20,32 @@
 
     <main>
 
-        <h1>Bienvenue sur notre boutique</h1>
+        <h1>Bienvenue sur notre cooperative</h1>
+
         <section class="product-list">
-            <?php foreach ($parcours as $parcourss){ ?>
-                 <article class="product-card">
-                <a href="parcourss.html">
-                    <h2><?= $parcourss['lieu_depart'] ?> - <?= $parcourss['lieu_arrivee'] ?></h2>
-                </a>
-            </article>
-         <?php } ?>
-           
+            <h2>Liste complète des parcours</h2>
+
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Départ</th>
+                    <th>Arrivée</th>
+                    <th>Action</th>
+                </tr>
+
+                <?php foreach ($parcours as $p): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($p['lieu_depart']) ?></td>
+                        <td><?= htmlspecialchars($p['lieu_arrivee']) ?></td>
+                        <td>
+                            <a href="/parcours/<?= $p['id'] ?>">Voir détails</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
         </section>
+
     </main>
+
     <footer>
         <p>&copy; 2025 Cooperative</p>
     </footer>

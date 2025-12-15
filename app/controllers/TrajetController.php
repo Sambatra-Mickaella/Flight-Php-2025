@@ -19,12 +19,10 @@ class TrajetController {
 
         $parcours = $parcoursModel->getParcours($id);
         $trajets  = $parcoursModel->getTrajetsByParcours($id);
-        $stats    = $parcoursModel->getStatParcours($id);
 
         $this->app->render('detail', [
             'parcours' => $parcours,
-            'trajets'  => $trajets,
-            'stats'    => $stats
+            'trajets'  => $trajets
         ]);
     }
 }

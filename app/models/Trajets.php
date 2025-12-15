@@ -23,17 +23,5 @@ class Trajets {
         return $stmt->fetchAll();
     }
 
-    public function getStatParcours($id){
-        $stmt = $this->db->prepare("
-            SELECT
-                COUNT(trajet_id) AS nombre_trajets,
-                SUM(recette) AS recette_totale,
-                SUM(carburant) AS carburant_total,
-                SUM(benefice) AS benefice_total
-            FROM v_kptv_trajets_complets
-            WHERE parcours_id = ?
-        ");
-        $stmt->execute([$id]);
-        return $stmt->fetch();
-    }
+  
 }

@@ -140,3 +140,27 @@ SELECT
     COUNT(DISTINCT chauffeur_id) AS nombre_chauffeurs
 FROM v_kptv_trajets_complets
 GROUP BY DATE(date_debut);
+
+-- Trajets les plus rentables
+CREATE OR REPLACE VIEW v_kptv_trajets_par_benefice AS
+SELECT
+    DATE(date_debut) AS jour,
+    trajet_id,
+    lieu_depart,
+    lieu_arrivee,
+    benefice
+FROM v_kptv_trajets_complets
+ORDER BY jour, benefice DESC;
+
+-- Gestion des pannes
+CREATE TABLE kptv_pannes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idVehicule INT NOT NULL,
+    date_debut DATETIME NOT NULL,
+    date_fin DATETIME,
+    description TEXT,
+    FOREIGN KEY (idVehicule) REFERENCES kptv_vehicules(id),
+    CONSTRAINT chk_panne_dates CHECK (date_fin IS NULL OR date_fin > date_debut)
+);
+
+

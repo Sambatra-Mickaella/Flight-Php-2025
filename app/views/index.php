@@ -37,7 +37,7 @@
                         <td><?= htmlspecialchars($p['lieu_depart']) ?></td>
                         <td><?= htmlspecialchars($p['lieu_arrivee']) ?></td>
                         <td>
-                            <a href="/parcours/<?= $p['id'] ?>">Voir détails</a>
+                            <a href="<?= Flight::get('base_url') ?>parcours/<?= $p['id'] ?>">Voir détails</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

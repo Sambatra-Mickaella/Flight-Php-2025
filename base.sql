@@ -32,8 +32,6 @@ CREATE TABLE kptv_trajets (
     idParcours INT NOT NULL,
     date_debut DATETIME NOT NULL,
     date_fin DATETIME,
-    recette DECIMAL(10,2) NOT NULL,
-    carburant DECIMAL(10,2) NOT NULL,
     type_voyage CHAR(1) NOT NULL,
     FOREIGN KEY (idParcours) REFERENCES kptv_parcours(id),
     CONSTRAINT chk_dates CHECK (date_fin > date_debut)   
@@ -58,6 +56,8 @@ CREATE TABLE kptv_voyage (
     idTrajet INT NOT NULL,
     idChauffeur INT NOT NULL,
     idVehicule INT NOT NULL,
+    recette DECIMAL(10,2) NOT NULL,
+    carburant DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (idTrajet) REFERENCES kptv_trajets(id),
     FOREIGN KEY (idChauffeur) REFERENCES kptv_chauffeurs(id),
     FOREIGN KEY (idVehicule) REFERENCES kptv_vehicules(id)
@@ -69,9 +69,9 @@ SELECT
     t.date_debut,
     t.date_fin,
     t.type_voyage,
-    t.recette,
-    t.carburant,
-    (t.recette - t.carburant) AS benefice,
+    vo.recette,
+    vo.carburant,
+    (vo.recette - vo.carburant) AS benefice,
     
     p.id AS parcours_id,
     p.lieu_depart,

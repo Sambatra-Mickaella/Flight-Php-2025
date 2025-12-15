@@ -10,19 +10,9 @@
 
 <hr>
 
-<h3>Statistiques</h3>
-<p>
-    Nombre de trajets : <?= $stats['nombre_trajets'] ?? 0 ?><br>
-    Recette totale : <?= $stats['recette_totale'] ?? 0 ?> Ar<br>
-    Carburant total : <?= $stats['carburant_total'] ?? 0 ?> Ar<br>
-    Bénéfice total : <?= $stats['benefice_total'] ?? 0 ?> Ar
-</p>
-
 <hr>
 
 <h3>Liste des trajets</h3>
-
-<?php if (!empty($trajets)): ?>
 <table border="1" cellpadding="5">
     <tr>
         <th>Date début</th>
@@ -44,13 +34,7 @@
         </tr>
     <?php endforeach; ?>
 </table>
-<?php else: ?>
-    <p>Aucun trajet pour ce parcours.</p>
-<?php endif; ?>
-
-<br>
-<a href="/">⬅ Retour à la liste</a>
 
 <?php else: ?>
-    <p>Parcours introuvable.</p>
+<p>Aucun parcours trouvé.</p>
 <?php endif; ?>

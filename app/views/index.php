@@ -40,6 +40,7 @@
                     <tr>
                         <td><?= htmlspecialchars($p['lieu_depart']) ?></td>
                         <td><?= htmlspecialchars($p['lieu_arrivee']) ?></td>
+                        <td><a href="/parcours/<?= htmlspecialchars($p['id']) ?>" style="text-decoration:none">Voir détail</a></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

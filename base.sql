@@ -149,8 +149,12 @@ SELECT
     lieu_depart,
     lieu_arrivee,
     benefice
-FROM v_kptv_trajets_complets
-ORDER BY jour, benefice DESC;
+FROM v_kptv_trajets_complets t
+WHERE benefice = (
+    SELECT MAX(benefice)
+    FROM v_kptv_trajets_complets
+    WHERE DATE(date_debut) = DATE(t.date_debut)
+);
 
 -- Gestion des pannes
 CREATE TABLE kptv_pannes (
@@ -162,5 +166,23 @@ CREATE TABLE kptv_pannes (
     FOREIGN KEY (idVehicule) REFERENCES kptv_vehicules(id),
     CONSTRAINT chk_panne_dates CHECK (date_fin IS NULL OR date_fin > date_debut)
 );
+
+--Salaire journalier
+CREATE OR REPLACE VIEW v_salaire_journalier AS
+SELECT
+    DATE(t.date_debut) AS jour,
+    c.id AS chauffeur_id,
+    c.nom AS chauffeur_nom,
+    SUM(CASE WHEN vo.recette >= ve.min_versement THEN vo.recette * 0.25 ELSE vo.recette * 0.08 END
+    ) AS salaire_journalier
+FROM kptv_voyage vo
+JOIN kptv_trajets t ON vo.idTrajet = t.id
+JOIN kptv_vehicules ve ON vo.idVehicule = ve.id
+JOIN kptv_chauffeurs c ON vo.idChauffeur = c.id
+GROUP BY DATE(t.date_debut), c.id, c.nom
+ORDER BY jour, c.nom;
+
+
+
 
 

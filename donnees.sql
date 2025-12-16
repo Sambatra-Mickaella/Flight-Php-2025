@@ -339,3 +339,11 @@ INSERT INTO kptv_voyage (idTrajet, idChauffeur, idVehicule, recette, carburant) 
 (88, 8, 5, 21000.00, 6300.00),
 (89, 8, 5, 24000.00, 7000.00),
 (90, 8, 5, 22000.00, 6500.00);
+
+-- Pannes vehicules
+INSERT INTO kptv_pannes (idVehicule, date_debut, date_fin, description) VALUES
+(1, '2025-12-10 18:00:00', '2025-12-11 07:00:00', 'Vidange et remplacement des plaquettes'),
+(3, '2025-12-12 13:30:00', '2025-12-12 17:45:00', 'Remplacement du pneu avant droit'),
+(6, '2025-12-13 05:00:00', '2025-12-13 08:20:00', 'Contrôle circuit de freinage'),
+(10, '2025-12-11 20:15:00', '2025-12-12 09:00:00', 'Révision périodique et changement filtre à air'),
+(14, '2025-12-13 14:00:00', NULL, 'Panne moteur en cours de diagnostic');

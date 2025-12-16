@@ -1,40 +1,75 @@
-<h2>Détail du parcours</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail du parcours</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
 
-<?php if ($parcours): ?>
+<header>
+    <div class="container">
+        <nav>
+            <a href="/" class="logo">Cooperative</a>
+            <ul class="menu">
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/trajets/rentables">Trajets rentables</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-<p>
-    <strong>Départ :</strong> <?= $parcours['lieu_depart'] ?><br>
-    <strong>Arrivée :</strong> <?= $parcours['lieu_arrivee'] ?><br>
-    <strong>Distance :</strong> <?= $parcours['distance'] ?> km
-</p>
+<main>
+    <h1>Trajets et parcours</h1>
 
-<hr>
+    <h2>Détail du parcours</h2>
 
-<hr>
+    <?php if ($parcours): ?>
+        <p class="parcours-details">
+            <strong>Départ :</strong> <?= htmlspecialchars($parcours['lieu_depart']) ?><br>
+            <strong>Arrivée :</strong> <?= htmlspecialchars($parcours['lieu_arrivee']) ?><br>
+            <strong>Distance :</strong> <?= htmlspecialchars($parcours['distance']) ?> km
+        </p>
 
-<h3>Liste des trajets</h3>
-<table border="1" cellpadding="5">
-    <tr>
-        <th>Date début</th>
-        <th>Véhicule</th>
-        <th>Chauffeur</th>
-        <th>Recette</th>
-        <th>Carburant</th>
-        <th>Bénéfice</th>
-    </tr>
+        <hr>
 
-    <?php foreach ($trajets as $t): ?>
-        <tr>
-            <td><?= $t['date_debut'] ?></td>
-            <td><?= $t['modele'] ?> (<?= $t['immatriculation'] ?>)</td>
-            <td><?= $t['chauffeur_nom'] ?></td>
-            <td><?= $t['recette'] ?></td>
-            <td><?= $t['carburant'] ?></td>
-            <td><?= $t['benefice'] ?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+        <h3>Liste des trajets</h3>
 
-<?php else: ?>
-<p>Aucun parcours trouvé.</p>
-<?php endif; ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date début</th>
+                    <th>Véhicule</th>
+                    <th>Chauffeur</th>
+                    <th>Recette</th>
+                    <th>Carburant</th>
+                    <th>Bénéfice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($trajets as $t): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($t['date_debut']) ?></td>
+                        <td><?= htmlspecialchars($t['modele']) ?> (<?= htmlspecialchars($t['immatriculation']) ?>)</td>
+                        <td><?= htmlspecialchars($t['chauffeur_nom']) ?></td>
+                        <td><?= htmlspecialchars($t['recette']) ?></td>
+                        <td><?= htmlspecialchars($t['carburant']) ?></td>
+                        <td><?= htmlspecialchars($t['benefice']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    <?php else: ?>
+        <p class="no-data">Aucun parcours trouvé.</p>
+    <?php endif; ?>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Cooperative</p>
+</footer>
+
+</body>
+</html>

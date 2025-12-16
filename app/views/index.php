@@ -13,6 +13,9 @@
                 <a href="/" class="logo">Cooperative</a>
                 <ul class="menu">
                     <li><a href="/">Accueil</a></li>
+                    <li><a href="/trajets/rentables">Rentabilite</a></li>
+                    <li><a href="/vehicules/par-jour">Liste Vehicules</a></li>
+                    <li><a href="/salaires/journalier">Salaire journalier</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,19 +29,21 @@
             <h2>Liste complète des parcours</h2>
 
             <table border="1" cellpadding="5">
-                <tr>
-                    <th>Départ</th>
-                    <th>Arrivée</th>
-                    <th>Action</th>
+
+                <tr >
+                    <th class="table-header">Départ</th>
+                    <th class="table-header">Arrivée</th>
+                    <th class="table-header">Action</th>
                 </tr>
 
                 <?php foreach ($parcours as $p): ?>
                     <tr>
                         <td><?= htmlspecialchars($p['lieu_depart']) ?></td>
                         <td><?= htmlspecialchars($p['lieu_arrivee']) ?></td>
-                        <td>
-                            <a href="/parcours/<?= $p['id'] ?>">Voir détails</a>
-                        </td>
+                      <td>
+    <a href="/parcours/<?= $p['id'] ?>" class="action-link">Voir détails</a>
+</td>
+
                     </tr>
                 <?php endforeach; ?>
             </table>

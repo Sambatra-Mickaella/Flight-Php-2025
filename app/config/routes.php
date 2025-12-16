@@ -16,14 +16,13 @@ use flight\net\Router;
  * @var Engine $app
  */
 
+// Main routes group
 $router->group('', function (Router $router) use ($app) {
 
 	$router->get('/', function () use ($app) {
 		$parcoursController = new ParcoursController($app);
 		$parcoursController->getParcours();
 	});
-
-<<<<<<< HEAD
 	$router->get('/trajets/rentables', function() use ($app) {
 		$controller = new TrajetController($app);
 		$controller->trajetsLesPlusRentablesParJour();
@@ -44,19 +43,15 @@ $router->group('', function (Router $router) use ($app) {
 		$controller->salaireJournalier();
 	});
 
-	Flight::route('/parcours/@id', function($id){
-    $controller = new TrajetController(Flight::app());
-    $controller->detail($id);
-});
-
-
-	$router->get('/detail/@id:[0-9]', function($id) use ($app) {
+	$router->get('/detail/@id:[0-9]+', function($id) use ($app) {
 		$parcoursController = new ParcoursController($app);
 		$parcoursController->getParcoursById($id);
-=======
-	$router->get('/parcours/@id', function ($id) use ($app) {
+	});
+
+	$router->get('/parcours/@id:[0-9]+', function ($id) use ($app) {
 		$controller = new TrajetController($app);
 		$controller->detail($id);
->>>>>>> caeeecfd59c88dd84f75f45d1d9630053fbecccc
 	});
-}, [SecurityHeadersMiddleware::class]);
+
+
+});

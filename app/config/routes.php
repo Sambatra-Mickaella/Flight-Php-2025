@@ -23,10 +23,7 @@ $router->group('', function (Router $router) use ($app) {
 		$parcoursController = new ParcoursController($app);
 		$parcoursController->getParcours();
 	});
-<<<<<<< HEAD
-=======
-
->>>>>>> 3152e4b83a9b8d329cb3cac468a76b80a01a95ce
+	
 	$router->get('/trajets/rentables', function() use ($app) {
 		$controller = new TrajetController($app);
 		$controller->trajetsLesPlusRentablesParJour();

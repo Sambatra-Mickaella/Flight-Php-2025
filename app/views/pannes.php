@@ -10,12 +10,12 @@
     <header>
         <div class="container">
             <nav>
-                <a href="/" class="logo">Cooperative</a>
+                <a href="<?= Flight::get('flight.base_url') ?>/" class="logo">Cooperative</a>
                 <ul class="menu">
-                    <li><a href="/">Accueil</a></li>
-                    <li><a href="/trajets/rentables">Trajets rentables</a></li>
-                    <li><a href="/vehicules/par-jour">Véhicules par jour</a></li>
-                    <li><a href="/pannes">Pannes</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/">Accueil</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables">Trajets rentables</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/vehicules/par-jour">Véhicules par jour</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/pannes">Pannes</a></li>
                 </ul>
             </nav>
         </div>
@@ -24,7 +24,7 @@
     <main>
         <h1>Pannes véhicules</h1>
 
-        <form method="get" action="/pannes" style="margin: 1rem 0;">
+        <form method="get" action="<?= Flight::get('flight.base_url') ?>/pannes" style="margin: 1rem 0;">
             <label for="idVehicule">Filtrer par véhicule:</label>
             <select id="idVehicule" name="idVehicule">
                 <option value="">-- Tous les véhicules --</option>
@@ -36,7 +36,7 @@
             </select>
             <button type="submit">Filtrer</button>
             <?php if (!empty($idVehicule)): ?>
-                <a href="/pannes" style="margin-left: 0.5rem; padding: 0.45rem 0.75rem; background: #444; color: white; text-decoration: none; border-radius: 4px;">Réinitialiser</a>
+                <a href="<?= Flight::get('flight.base_url') ?>/pannes" style="margin-left: 0.5rem; padding: 0.45rem 0.75rem; background: #444; color: white; text-decoration: none; border-radius: 4px;">Réinitialiser</a>
             <?php endif; ?>
         </form>
 

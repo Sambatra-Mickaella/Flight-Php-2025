@@ -10,10 +10,10 @@
     <header>
         <div class="container">
             <nav>
-                <a href="/" class="logo">Cooperative</a>
+                <a href="<?= Flight::get('flight.base_url') ?>/" class="logo">Cooperative</a>
                 <ul class="menu">
-                    <li><a href="/">Accueil</a></li>
-                    <li><a href="/trajets/rentables">Trajets rentables</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/">Accueil</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables">Trajets rentables</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,12 +22,12 @@
     <main>
         <h1>Trajets les plus rentables par jour</h1>
       
-        <form method="get" action="/trajets/rentables" style="margin: 1rem 0;">
+        <form method="get" action="<?= Flight::get('flight.base_url') ?>/trajets/rentables" style="margin: 1rem 0;">
             <label for="jour">Filtrer par jour:</label>
             <input type="date" id="jour" name="jour" value="<?= isset($jour) && $jour ? htmlspecialchars($jour) : '' ?>">
             <button type="submit">Affihcher detail Par date </button>
             <?php if (!empty($jour)): ?>
-                <button type="submit"><a href="/trajets/rentables" style="margin-left: 0.5rem; color : white ; text-decoration: none;">Afficher les plus rentable</a></button>
+                <button type="submit"><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables" style="margin-left: 0.5rem; color : white ; text-decoration: none;">Afficher les plus rentable</a></button>
             <?php endif; ?>
         </form>
 

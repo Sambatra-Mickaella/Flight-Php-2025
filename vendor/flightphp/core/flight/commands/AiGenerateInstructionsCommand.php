@@ -91,7 +91,7 @@ class AiGenerateInstructionsCommand extends Command
         $creds = json_decode(file_get_contents($runwayCredsFile), true);
         $apiKey = $creds['api_key'] ?? '';
         $model = $creds['model'] ?? 'gpt-4o';
-        $baseUrl = $creds['base_url'] ?? 'https://api.openai.com';
+        $baseUrl = $creds['flight.base_url'] ?? 'https://api.openai.com';
 
         // Prepare curl call (OpenAI compatible)
         $headers = [

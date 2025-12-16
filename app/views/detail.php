@@ -11,10 +11,10 @@
 <header>
     <div class="container">
         <nav>
-            <a href="/" class="logo">Cooperative</a>
+            <a href="<?= Flight::get('flight.base_url') ?>/" class="logo">Cooperative</a>
             <ul class="menu">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/trajets/rentables">Trajets rentables</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/">Accueil</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables">Trajets rentables</a></li>
             </ul>
         </nav>
     </div>

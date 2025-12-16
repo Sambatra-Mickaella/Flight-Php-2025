@@ -103,7 +103,7 @@ class AiInitCommand extends Command
             'provider' => $api,
             'api_key' => $apiKey,
             'model' => $model,
-            'base_url' => $baseUrl,
+            'flight.base_url' => $baseUrl,
         ];
 
         $json = json_encode($creds, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);

@@ -16,13 +16,13 @@
 <header>
     <div class="container">
         <nav>
-            <a href="/" class="logo">Cooperative</a>
+            <a href="<?= Flight::get('flight.base_url') ?>/" class="logo">Cooperative</a>
             <ul class="menu">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/trajets/rentables">Trajets rentables</a></li>
-                <li><a href="/vehicules/par-jour">Véhicules par jour</a></li>
-                <li><a href="/pannes">Pannes</a></li>
-                <li><a href="/salaires/journalier">Salaire journalier</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/">Accueil</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables">Trajets rentables</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/vehicules/par-jour">Véhicules par jour</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/pannes">Pannes</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/salaires/journalier">Salaire journalier</a></li>
             </ul>
         </nav>
     </div>
@@ -31,7 +31,7 @@
     <div class="container">
         <h1>Salaire journalier des chauffeurs</h1>
 
-    <form method="get" action="/salaires/journalier" class="filters">
+    <form method="get" action="<?= Flight::get('flight.base_url') ?>/salaires/journalier" class="filters">
         <label for="jour">Jour:</label>
         <input type="date" id="jour" name="jour" value="<?= htmlspecialchars($jour ?? '') ?>">
 
@@ -45,7 +45,7 @@
             <?php endforeach; ?>
         </select>
         <button type="submit">Filtrer</button>
-        <a href="/salaires/journalier" style="margin-left: 0.5rem; padding: 0.45rem 0.75rem; background: #444; color: white; text-decoration: none; border-radius: 4px;">Réinitialiser</a>
+        <a href="<?= Flight::get('flight.base_url') ?>/salaires/journalier" style="margin-left: 0.5rem; padding: 0.45rem 0.75rem; background: #444; color: white; text-decoration: none; border-radius: 4px;">Réinitialiser</a>
     </form>
 
     <?php if (!empty($salaires)): ?>

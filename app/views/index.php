@@ -10,12 +10,12 @@
     <header>
         <div class="container">
             <nav>
-                <a href="/" class="logo">Cooperative</a>
+                <a href="<?= Flight::get('flight.base_url') ?>/" class="logo">Cooperative</a>
                 <ul class="menu">
-                    <li><a href="/">Accueil</a></li>
-                    <li><a href="/trajets/rentables">Rentabilite</a></li>
-                    <li><a href="/vehicules/par-jour">Liste Vehicules</a></li>
-                    <li><a href="/salaires/journalier">Salaire journalier</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/">Accueil</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables">Rentabilite</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/vehicules/par-jour">Liste Vehicules</a></li>
+                    <li><a href="<?= Flight::get('flight.base_url') ?>/salaires/journalier">Salaire journalier</a></li>
                 </ul>
             </nav>
         </div>
@@ -40,7 +40,7 @@
                     <tr>
                         <td><?= htmlspecialchars($p['lieu_depart']) ?></td>
                         <td><?= htmlspecialchars($p['lieu_arrivee']) ?></td>
-                        <td><a href="/parcours/<?= htmlspecialchars($p['id']) ?>" style="text-decoration:none">Voir détail</a></td>
+                        <td><a href="<?= Flight::get('flight.base_url') ?>/parcours/<?= htmlspecialchars($p['id']) ?>" style="text-decoration:none">Voir détail</a></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

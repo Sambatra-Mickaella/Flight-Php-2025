@@ -11,11 +11,11 @@
 <header>
     <div class="container">
         <nav>
-            <a href="/" class="logo">Cooperative</a>
+            <a href="<?= Flight::get('flight.base_url') ?>/" class="logo">Cooperative</a>
             <ul class="menu">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/trajets/rentables">Trajets rentables</a></li>
-                <li><a href="/vehicules/par-jour">Véhicules par jour</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/">Accueil</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/trajets/rentables">Trajets rentables</a></li>
+                <li><a href="<?= Flight::get('flight.base_url') ?>/vehicules/par-jour">Véhicules par jour</a></li>
             </ul>
         </nav>
     </div>
@@ -24,12 +24,12 @@
 <main>
     <h1>Véhicules par jour</h1>
 
-    <form method="get" action="/vehicules/par-jour">
+    <form method="get" action="<?= Flight::get('flight.base_url') ?>/vehicules/par-jour">
         <label for="jour">Filtrer par jour :</label>
         <input type="date" id="jour" name="jour" value="<?= isset($jour) && $jour ? htmlspecialchars($jour) : '' ?>">
         <button type="submit">Afficher</button>
         <?php if (!empty($jour)): ?>
-            <button type="submit"><a href="/vehicules/par-jour" class="btn" style="text-decoration: none; color: white;">Réinitialiser</a></button>
+            <button type="submit"><a href="<?= Flight::get('flight.base_url') ?>/vehicules/par-jour" class="btn" style="text-decoration: none; color: white;">Réinitialiser</a></button>
         <?php endif; ?>
     </form>
 
